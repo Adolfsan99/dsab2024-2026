@@ -1,93 +1,17 @@
-<!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fechas Cada 9 y 15 Días</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .pasada {
-            color: gray;
-            text-decoration: line-through;
-        }
-
-        .destacada {
-            color: red;
-            font-weight: bold;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario cada 9 días</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-    <h1>Fechas Cada 9 Días</h1>
-    <ul id="nueveDiasList"></ul>
-
-    <h1>Fechas Cada 15 Días</h1>
-    <ul id="quinceDiasList"></ul>
-
-    <script>
-        const fechasNueveDias = [];
-        const fechasQuinceDias = [];
-
-        const startDate = new Date("2025-24-1");
-
-        // Generar fechas cada 9 días
-        for (let i = 0; i < 100; i++) {
-            const nextDate = new Date(startDate);
-            nextDate.setDate(startDate.getDate() + (i * 9));
-            fechasNueveDias.push(nextDate.toISOString().split('T')[0]);
-        }
-
-        // Generar fechas cada 15 días
-        for (let i = 0; i < 100; i++) {
-            const nextDate = new Date(startDate);
-            nextDate.setDate(startDate.getDate() + (i * 15));
-            fechasQuinceDias.push(nextDate.toISOString().split('T')[0]);
-        }
-
-        const today = new Date();
-
-        function updateList(fechas, elementId) {
-            const list = document.getElementById(elementId);
-            let foundNext = false;
-
-            fechas.forEach(fecha => {
-                const date = new Date(fecha);
-                const li = document.createElement("li");
-                li.textContent = date.toLocaleDateString();
-
-                if (date < today) {
-                    li.classList.add("pasada");
-                } else {
-                    if (!foundNext) {
-                        li.classList.add("destacada");
-                        foundNext = true;
-                    }
-                }
-
-                list.appendChild(li);
-            });
-        }
-
-        updateList(fechasNueveDias, "nueveDiasList");
-        updateList(fechasQuinceDias, "quinceDiasList");
-    </script>
-
+  <div class="container">
+    <h1>Calendario Cada 9 Días</h1>
+    <div id="dateList" class="date-list">
+      <!-- Dates will be inserted here by JavaScript -->
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
-
 </html>
